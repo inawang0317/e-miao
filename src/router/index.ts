@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import CommonBase from './commonBase'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,7 +16,9 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   }
-]
+].concat(
+  CommonBase
+)
 
 const router = createRouter({
   history: createWebHashHistory(),

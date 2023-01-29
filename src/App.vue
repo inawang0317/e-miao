@@ -1,30 +1,28 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <router-view />
+  </div>
+  
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts" setup>
+import { setHtmlTheme } from '@/utils'
+import { useDesignStore } from '@/store/designStore/designStore'
+// import { useDarkThemeHook, useThemeOverridesHook } from '@/hooks'
+// import { darkTheme } from 'naive-ui'
+// import type { GlobalTheme } from 'naive-ui'
 
-nav {
-  padding: 30px;
+// 暗黑主题
+// const darkTheme = darkTheme
+// const darkTheme = useDarkThemeHook()
+// console.log(9909,darkTheme)
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+// 暗黑主题
+// const darkTheme = useDarkThemeHook()
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+// 主题配置
+// const overridesTheme = useThemeOverridesHook()
+const designStore = useDesignStore()
+designStore.changeTheme()
+setHtmlTheme()
+</script>

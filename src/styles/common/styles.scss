@@ -1,0 +1,12 @@
+@import "./var.scss";
+@import "./mixin/mixins.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+@mixin flex-center-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

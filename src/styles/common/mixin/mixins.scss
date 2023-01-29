@@ -1,0 +1,18 @@
+@import '../theme/theme.scss';
+@import './function.scss';
+
+@mixin themeify {
+  @each $theme-name, $theme-map in $themes {
+    $theme-map: $theme-map !global;
+    [data-theme='#{$theme-name}'] & {
+      @content;
+    }
+  }
+}
+
+//获取背景渐变颜色
+@mixin get-background-image($target) {
+  @include themeify {
+    background-image: themed($target);
+  }
+}

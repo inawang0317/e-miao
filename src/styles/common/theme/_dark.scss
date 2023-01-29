@@ -1,0 +1,10 @@
+@import '../var.scss';
+
+/* errorInfoRecord:
+  media query expectedscss(css-mediaqueryexpected)
+  解决：在import句末加上分号
+*/
+$dark: (
+  //渐变背景
+  background-image: linear-gradient(120deg, $--color-dark-bg-1 0%, $--color-dark-bg-1 100%),
+);
