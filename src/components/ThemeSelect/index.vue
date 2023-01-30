@@ -4,14 +4,6 @@
       <el-icon v-if="!designStore.darkTheme" :size="20"><Sunny /></el-icon>
       <el-icon v-else :size="20"><Moon /></el-icon>
     </div>
-    
-    <!-- <n-button quaternary @click="changeTheme" title="主题">
-      <n-icon size="20" :depth="1">
-        <MoonIcon v-if="designStore.darkTheme"></MoonIcon>
-        <SunnyIcon v-else ></SunnyIcon>
-      </n-icon>
-    </n-button> -->
-    <!-- <n-button>default</n-button> -->
   </div>
   
 </template>
@@ -19,8 +11,6 @@
 <script lang="ts" setup>
 import { useDesignStore } from '@/store/designStore/designStore'
 import { setHtmlTheme } from '@/utils'
-// import { icon } from '@/plugins'
-// const { MoonIcon, SunnyIcon } = icon.ionicons5
 
 
 const designStore = useDesignStore()

@@ -1,28 +1,27 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import CommonBase from './commonBase'
+import commonBase from './commonBase'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/commonBase/index'
   },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
-].concat(
-  CommonBase
-)
+  ...commonBase
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  if (!to.matched.length) {
+    next('./error?code=404')
+  } else {
+    next()
+  }
 })
 
 export default router

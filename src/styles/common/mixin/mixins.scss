@@ -10,9 +10,30 @@
   }
 }
 
-//获取背景渐变颜色
+// 获取背景渐变颜色
 @mixin get-background-image($target) {
   @include themeify {
     background-image: themed($target);
+  }
+}
+
+// 获取分割border颜色
+@mixin  get-border-with-theme($target) {
+  @include themeify {
+    border-bottom: themed($target);
+  }
+}
+
+//获取背景颜色
+@mixin fetch-bg-color($target) {
+  @include themeify {
+    background-color: themed($target);
+  }
+}
+
+// 获取文字颜色
+@mixin fetch-text-color($target) {
+  @include themeify {
+    color: themed($target);
   }
 }

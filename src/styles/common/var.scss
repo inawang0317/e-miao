@@ -7,7 +7,28 @@ $--color-dark-bg-1: #18181c;
 $--light-shalow: 2%;
 // 白色
 $--color-light-bg: #fff;
+$--color-light-bg-3: #e5e6eb;
 
 // 文字
 $--color-text: #1d2129;
 $--color-text-1: #4e5969;
+$--color-text-4: #f2f3f5;
+
+// 最大宽度
+$--max-width: 1920px;
+
+// 顶部距离
+$--header-height: 60px;
+
+// 底部距离
+$--footer-height: 50px;
+
+// 模糊
+$--filter-blur-base: blur(20px);
+
+// 阴影
+$--border-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+// 毛玻璃
+$--filter-color-login-dark: rgba(35,35,36, 0.7);
+$--filter-color-login-light: rgba(240, 240, 240, 0.7);
