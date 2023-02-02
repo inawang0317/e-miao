@@ -5,10 +5,16 @@ $light: (
   color: $--color-text,
   //背景
   background-color: $--color-light-bg-3,
+  background-color1: $--color-light-bg-1,
   //渐变背景
   background-image: linear-gradient(120deg, $--color-light-bg 0%, $--color-light-bg 100%),
   // 毛玻璃背景
   filter-color: $--filter-color-login-light,
+  // 斑点背景
+  background-point: (
+    linear-gradient($--color-light-bg-1 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, $--color-dark-bg-5 0)
+  ),
   // 分割线
   border-bottom: 1px solid darken($color: $--color-light-bg, $amount: $--dark-shalow * 10)
 )

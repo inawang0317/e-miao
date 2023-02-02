@@ -1,12 +1,14 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import commonBase from './commonBase'
+import visualizationSystem from './visualizationSystem'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/commonBase/index'
   },
-  ...commonBase
+  ...commonBase,
+  ...visualizationSystem
 ]
 
 const router = createRouter({

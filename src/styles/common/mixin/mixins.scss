@@ -11,7 +11,7 @@
 }
 
 // 获取背景渐变颜色
-@mixin get-background-image($target) {
+@mixin background-image($target) {
   @include themeify {
     background-image: themed($target);
   }
@@ -35,5 +35,12 @@
 @mixin fetch-text-color($target) {
   @include themeify {
     color: themed($target);
+  }
+}
+
+
+@mixin fetch-theme-custom ($key, $value) {
+  @include themeify {
+    #{$key}: themed($value);
   }
 }

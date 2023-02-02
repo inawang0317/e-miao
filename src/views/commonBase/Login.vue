@@ -121,7 +121,7 @@ $go-login-height: 100vh;
   width: 100%;
   height: $go-login-height;
   overflow: hidden;
-  @include get-background-image('background-image');
+  @include background-image('background-image');
   .top-options{
     width: 100%;
     padding: 0px 40px;

@@ -1,5 +1,6 @@
 @import "./var.scss";
 @import "./mixin/mixins.scss";
+@import "./animation.scss";
 
 * {
   box-sizing: border-box;
@@ -17,4 +18,15 @@
   backdrop-filter: $--filter-blur-base;
   @include fetch-bg-color("filter-color");
   box-shadow: $--border-shadow;
+}
+
+// 过渡
+.go-transition {
+  transition: all 0.4s;
+}
+
+// 背景斑点需配合 @mixin background-image 使用
+.go-point-bg {
+  @include fetch-theme-custom("background-color", "background-color1");
+  background-size: 15px 15px, 15px 15px;
 }

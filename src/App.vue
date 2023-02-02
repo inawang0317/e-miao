@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%;">
     <router-view />
   </div>
   
@@ -8,14 +8,18 @@
 <script lang="ts" setup>
   import { setHtmlTheme } from '@/utils'
   import { useDesignStore } from '@/store/designStore/designStore'
+  import { getLocalStorage } from '@/utils'
+  import { StorageEnum } from '@/enums/storageEnum'
+  import { ThemeEnum } from '@/enums/styleEnum'
 
+  const { GO_DESIGN_STORE } = StorageEnum
+
+  const storageDesign = getLocalStorage(GO_DESIGN_STORE)
   const designStore = useDesignStore()
-  designStore.changeTheme()
-  setHtmlTheme()
+  let themeName: ThemeEnum = ThemeEnum.DARK
+  if (storageDesign && storageDesign.themeName) {
+    themeName = storageDesign.themeName
+  }
+  designStore.setTheme(themeName)
+  setHtmlTheme(themeName)
 </script>
-<style>
-body{
-  margin: 0;
-  padding: 0;
-}
-</style>

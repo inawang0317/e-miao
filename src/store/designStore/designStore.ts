@@ -44,6 +44,11 @@ export const useDesignStore = defineStore({
       this.appTheme = color.hex
       this.appThemeDetail = color
       setLocalStorage(GO_DESIGN_STORE, this.$state)
+    },
+    setTheme(theme: ThemeEnum): void {
+      this.darkTheme = theme === ThemeEnum.DARK
+      this.themeName = theme
+      setLocalStorage(GO_DESIGN_STORE, this.$state)
     }
   }
 })

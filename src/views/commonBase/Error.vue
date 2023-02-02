@@ -4,7 +4,7 @@
       <img src="@/assets/commonBase/error/err_dark.svg" v-if="!designStore.darkTheme">
       <img src="@/assets/commonBase/error/err_light.svg" v-else>
     </div>
-    <div>{{errMsg}}</div>
+    <div v-if="!isHideText">{{errMsg}}</div>
   </div>
 </template>
 
@@ -15,6 +15,14 @@
   const designStore = useDesignStore()
   const { currentRoute: { value: { query: { code: errCode } } } } = useRouter()
 
+  const props = defineProps({
+    showText: String,
+    isHideText: {
+      type: Boolean,
+      default: false
+    }
+  })
+
   const getErrMsg = (code: number): string => {
     const errCodeMap: Record<number, string>  = {
       404: '页面没有找到呀～',
@@ -24,6 +32,8 @@
     const msg = errCodeMap[code]
     if (msg) {
       return msg
+    } else if (props.showText) {
+      return props.showText
     }
     return '出错咯～'
   }
