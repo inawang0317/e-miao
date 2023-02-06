@@ -3,7 +3,7 @@
     <div class="project-list-items-box">
       <ProjectItem v-for="item in projectList" :key="item.id" :cardData="item" clas="item-item"></ProjectItem>
     </div>
-    <div>
+    <div class="project-list-pagination-box">
       <el-pagination background layout="prev, pager, next" :total="pageParams.total" />
     </div>
   </div>
@@ -37,6 +37,11 @@ const props = defineProps({
     ::v-deep .project-item-box{
       margin-bottom: 30px;
     }
+  }
+  .project-list-pagination-box{
+    margin-top: 20px;
+    @include flex-center-center;
+    justify-content: flex-end;
   }
 }
 

@@ -25,9 +25,9 @@
           </template>
         </el-image>
         <div class="card-footer">
-          <div>{{cardData.title}}</div>
-          <div>
-            <OperateBtn :isSignle="true" :operate="OperationType.Edit"></OperateBtn>
+          <div class="project-title">{{cardData.title}}</div>
+          <div class="operate-btn-wrapper">
+            <OperateBtn :isSignle="true" :operate="OperationType.EDIT"></OperateBtn>
             <OperateBtn :isSignle="false" :operates="operates"></OperateBtn>
           </div>
         </div>
@@ -56,7 +56,7 @@
     OperationType.PREVIEW,
     OperationType.RENAME,
     OperationType.CLONE,
-    props.cardData?.release ? OperationType.RENAME : OperationType.CANCLE_RELEASE,
+    props.cardData?.release ? OperationType.RELEASE : OperationType.CANCLE_RELEASE,
     OperationType.DOWLOAD,
     OperationType.DELETE
   ]
@@ -125,6 +125,22 @@
           height: 100px;
         }
         
+      }
+      .card-footer {
+        @include flex-center-center;
+        justify-content: space-between;
+        width: 100%;
+        @include fetch-bg-color('background-color1');
+        padding: 15px 10px;
+        .project-title{
+          max-width: 120px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .operate-btn-wrapper {
+          @include flex-center-center;
+        }
       }
     }
   }

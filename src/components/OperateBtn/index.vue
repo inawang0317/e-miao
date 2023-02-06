@@ -1,44 +1,68 @@
 <template>
   <div>
-    <div v-if="props.isSignle"></div>
-    <el-select v-model="value" placeholder="Select" v-else>
-      <el-option
-        v-for="item in props.operates"
-        :key="item"
-      >
-        <span style="float: left">{{ item }}</span>
-        <span
-          style="
-            float: right;
-            color: var(--el-text-color-secondary);
-            font-size: 13px;
-          "
-          >{{ item }}</span
-        >
-      </el-option>
-    </el-select>
+    <div v-if="props.isSignle">
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          <el-button class="op-btn-size">
+            <el-icon @click="handleCommand(props.operate)"><Edit /></el-icon>
+          </el-button>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item :command="props.operate">
+              {{getOperationTypeZhname(props.operate)}}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
+    <div v-else>
+      <el-dropdown @command="handleCommand">
+        <el-button class="op-btn-size">
+          <el-icon><MoreFilled /></el-icon>
+        </el-button>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item 
+              :icon="getOperationTypeMapIcon(item)" 
+              v-for="item in props.operates" 
+              :key="item"
+              :command="item"
+            >
+              {{getOperationTypeZhname(item)}}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import { OperationType } from './const'
+  import { Prop } from '@vue/runtime-core'
+  import { OperationType, getOperationTypeMapIcon, getOperationTypeZhname, emitEventName } from './const'
 
-  const props = defineProps<{
-    operate?: { // 操作名称
-      type: OperationType,
-      default: OperationType.EDIT
-    },
-    isSignle: { // 是否是单个操作
-      type: Boolean,
-      default: true
-    },
-    operates?: {
-      type: OperationType[],
-      default: [OperationType.EDIT]
-    }
-  }>()
+  interface Props {
+    operate?: OperationType,
+    isSignle: boolean,
+    operates?: OperationType[]
+  }
 
-  const emit = defineEmits(['preview', ''])
+  // 带自定义类型定义和默认值的props
+  const props = withDefaults(defineProps<Props>(), {
+    operate: OperationType.EDIT,
+    isSignle: true,
+    operates: () => [OperationType.EDIT]
+  })
+
+  const emit = defineEmits(emitEventName)
+
+  const handleCommand = (command: OperationType) => {
+    emit(emitEventName[command])
+  }
 </script>
 <style lang="scss" scoped>
-
+.op-btn-size{
+  padding: 5px 10px;
+  margin-left: 10px;
+}
 </style>
