@@ -9,6 +9,7 @@ export const useDataListInit = () => {
       title: '我的项目1',
       label: '演示案例1',
       release: ReleaseType.RELEASED,
+      updateTime: '2023-01-23 10:30:11',
       snapshot: 'http://pro.statics.techuangyi.com/2020/12/03/yQMat3t4iiZTWEEE2a2F6th8.jpg?x-oss-process=image/resize,m_lfit,w_1366,h_0'
     },
     {

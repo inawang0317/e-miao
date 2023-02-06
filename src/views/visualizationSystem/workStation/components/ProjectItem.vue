@@ -9,13 +9,13 @@
             @resize="resizeHandle">
           </ControlBtn>
           <div class="release-status">
-            <div class="go-animation-twinkle release-status-dot" :style="{backgroundColor: cardData.release ? '#67C23A' : '#E6A23C'}"></div>
-            <p>{{cardData.release ? '已发布' : '未发布'}}</p>
+            <div class="go-animation-twinkle release-status-dot" :style="{backgroundColor: props.cardData.release ? '#67C23A' : '#E6A23C'}"></div>
+            <p>{{props.cardData.release ? '已发布' : '未发布'}}</p>
           </div>
         </div>
       </template>
       <div class="card-body">
-        <el-image style="width: 230px; height: 180px" :src="cardData.snapshot" fit="cover">
+        <el-image style="width: 230px; height: 180px" :src="props.cardData.snapshot" fit="cover">
           <template #error>
             <div class="image-slot">
               <img :src='require("@/assets/commonBase/error/err_dark.svg")' v-if="!designStore.darkTheme">
@@ -25,7 +25,7 @@
           </template>
         </el-image>
         <div class="card-footer">
-          <div class="project-title">{{cardData.title}}</div>
+          <div class="project-title">{{props.cardData.title}}</div>
           <div class="operate-btn-wrapper">
             <OperateBtn :isSignle="true" :operate="OperationType.EDIT"></OperateBtn>
             <OperateBtn :isSignle="false" :operates="operates"></OperateBtn>

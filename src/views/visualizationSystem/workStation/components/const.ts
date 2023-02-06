@@ -8,6 +8,7 @@ export type ChartType = {
   label: string // 标签
   release: ReleaseType // 是否已发布
   snapshot?: string // 预览快照
+  updateTime?: string // 更新时间
 }
 
 export type ChartList = ChartType[]
