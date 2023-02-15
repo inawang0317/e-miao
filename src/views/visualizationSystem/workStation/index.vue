@@ -2,9 +2,7 @@
   <div class="vi-system-box">
     <el-container>
       <el-aside width="200px">
-        <el-menu
-          default-active="2"
-        >
+        <el-menu default-active="2">
         <el-sub-menu index="1">
           <template #title>
             <el-icon><location /></el-icon>
@@ -40,7 +38,10 @@
                 <el-button @click="newProject" type="primary" plain>新建</el-button>
               </el-form-item>
             </el-form>
-            <ThemeSelect></ThemeSelect>
+            <div class="system-header">
+              <ThemeSelect></ThemeSelect>
+              <UserInfo></UserInfo>
+            </div>
           </div>
         </el-header>
         <el-main>
@@ -54,6 +55,7 @@
 
 <script lang="ts" setup>
   import { ThemeSelect } from '@/components/ThemeSelect'
+  import { UserInfo } from '@/components/UserInfo'
   import { Search } from '@element-plus/icons-vue'
   import { reactive } from 'vue'
   import { ErrorPage } from '@/views/commonBase/index'
@@ -95,6 +97,15 @@
           width: 300px;
         }
       }
+      .system-header{
+        @include flex-center-center;
+      }
     }
+  }
+  ::v-deep .el-menu {
+    border-right: none;
+  }
+  ::v-deep .el-aside{
+    border-right: solid 1px #4C4D4F;
   }
 </style>

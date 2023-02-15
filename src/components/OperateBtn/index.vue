@@ -1,20 +1,18 @@
 <template>
   <div>
     <div v-if="props.isSignle">
-      <el-dropdown>
-        <span class="el-dropdown-link">
+      <el-tooltip 
+        :content="getOperationTypeZhname(props.operate)" 
+        placement="bottom" 
+        effect="light"
+        ref="tooltipRef"
+      >
           <el-button class="op-btn-size">
-            <el-icon @click="handleCommand(props.operate)"><Edit /></el-icon>
+            <el-icon @click.stop="handleCommand(props.operate)">
+              <component :is="getOperationTypeMapIcon(props.operate)"></component>
+            </el-icon>
           </el-button>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item :command="props.operate">
-              {{getOperationTypeZhname(props.operate)}}
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      </el-tooltip>
     </div>
     <div v-else>
       <el-dropdown @command="handleCommand">
@@ -38,8 +36,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { Prop } from '@vue/runtime-core'
   import { OperationType, getOperationTypeMapIcon, getOperationTypeZhname, emitEventName } from './const'
+  import { ref } from 'vue'
 
   interface Props {
     operate?: OperationType,
@@ -54,9 +52,16 @@
     operates: () => [OperationType.EDIT]
   })
 
+  const tooltipRef = ref(null)
+
   const emit = defineEmits(emitEventName)
 
   const handleCommand = (command: OperationType) => {
+    if (props.isSignle) {
+      // modal中使用tooltip时，页面发生跳转，tooltip弹窗层始终关不上
+      // 这里手动关闭
+      (tooltipRef.value as any).hide()
+    }
     emit(emitEventName[command])
   }
 </script>

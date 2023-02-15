@@ -6,8 +6,8 @@
         :key="item.id" 
         :cardData="item" 
         class="item-item"
-        @click="openModal(item)"
         @resize="openModal"
+        @edit="handleEdit"
       ></ProjectItem>
     </div>
     <div class="project-list-pagination-box">
@@ -18,6 +18,7 @@
         :modalData="modalData" 
         :showModal="showModal"
         @close="closeModal"
+        @edit="handleEdit"
       ></ProjectItemModal>
     </div>
   </div>
@@ -26,8 +27,8 @@
 <script setup lang="ts">
 import { ProjectItem, ProjectItemModal } from './index'
 import { ref, defineProps, PropType } from 'vue'
-import { ChartList } from './const'
-import { ChartType } from './const'
+import { ChartList, ChartType } from './const'
+import { useRouter } from 'vue-router'
 
 const pageParams = ref({
   current: 1,
@@ -37,6 +38,8 @@ const pageParams = ref({
 
 const showModal = ref<boolean>(false)
 const modalData = ref<ChartType | null>(null)
+
+const $router = useRouter()
 
 const props = defineProps({
   projectList: Object as PropType<ChartList>
@@ -50,6 +53,13 @@ const openModal = (cardData: ChartType) => {
 const closeModal = () => {
   modalData.value = null
   showModal.value = false
+}
+
+const handleEdit = (data: ChartType): void => {
+  closeModal()
+  $router.push({
+    path: `/visualizationSystem/chartHome/${data?.id}`
+  })
 }
 
 </script>

@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-dialog 
-    style="overflow: hidden;"
+      style="overflow: hidden;"
       v-model="props.showModal" 
       :show-close="false" 
       width="80%"
       :close-on-click-modal="false"
       :close-on-press-escape="false"
-      top="7vh"
+      top="4vh"
     >
       <template #header="{ titleId }">
         <div class="my-header">
@@ -40,7 +40,7 @@
               <div class="go-animation-twinkle release-status-dot" :style="{backgroundColor: props.modalData.release ? '#67C23A' : '#E6A23C'}"></div>
               <p>{{props.modalData.release ? '已发布' : '未发布'}}</p>
             </div>
-            <OperateBtn :isSignle="true" :operate="OperationType.EDIT"></OperateBtn>
+            <OperateBtn :isSignle="true" :operate="OperationType.EDIT" @edit="handleEdit"></OperateBtn>
           </div>
         </div>
       </template>
@@ -68,13 +68,18 @@
     modalData: null
   })
 
-  const emits = defineEmits(['close', 'resize'])
+  const emits = defineEmits(['close', 'resize', 'edit'])
 
   const removeHanlde = () => {
     emits('close')
   }
   const resizeHandle = () => {
     console.log('resizeHandle')
+  }
+
+  const handleEdit = () => {
+    console.log(1212)
+    emits('edit', props.modalData)
   }
 </script>
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-import { Download, EditPen, Delete, View, Promotion, CopyDocument } from '@element-plus/icons-vue'
+import { Download, EditPen, Delete, View, Promotion, CopyDocument, Edit } from '@element-plus/icons-vue'
 
 export enum OperationType {
   EDIT = 1, // 编辑
@@ -16,7 +16,7 @@ export const emitEventName = ['default', 'edit', 'preview', 'rename', 'release',
 
 export const getOperationTypeMapIcon = (opType: OperationType) => {
   const iconMap = {
-    [OperationType.EDIT]: EditPen,
+    [OperationType.EDIT]: Edit,
     [OperationType.PREVIEW]: View,
     [OperationType.RENAME]: EditPen,
     [OperationType.RELEASE]: Promotion,
